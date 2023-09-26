@@ -51,33 +51,41 @@ let Binary_Search_Tree = (array) => {
   let pre_order = () => {
     if (tree_root == null) return "tree empty";
 
-    pre_order_helper(root);
+    let array = [];
+
+    return pre_order_helper(tree_root, array);
   };
 
-  let pre_order_helper = (root) => {
+  let pre_order_helper = (root, array) => {
     if (root == null) {
-      return;
+      return array;
     } else {
-      console.log(root);
-      pre_order_helper(root.left);
-      pre_order_helper(root.right);
+      array.push(root.data);
+      pre_order_helper(root.left, array);
+      pre_order_helper(root.right, array);
     }
+
+    return array;
   };
 
   let post_order = () => {
     if (tree_root == null) return "tree empty";
 
-    post_order_helper(tree_root);
+    let array = [];
+
+    return post_order_helper(tree_root, array);
   };
 
-  let post_order_helper = (root) => {
+  let post_order_helper = (root, array) => {
     if (root == null) {
-      return;
+      return array;
     } else {
-      post_order_helper(root.left);
-      post_order_helper(root.right);
-      console.log(root.data);
+      post_order_helper(root.left, array);
+      post_order_helper(root.right, array);
+      array.push(root.data);
     }
+
+    return array;
   };
 
   /**
@@ -179,7 +187,7 @@ let Binary_Search_Tree = (array) => {
     return Math.max(left_subtree, right_subtree) + 1;
   };
 
-  let balanced_tree = () => {
+  let rebalanced_tree = () => {
     if (tree_root == null) return "empty tree";
 
     //ordered nodes in an array
@@ -289,7 +297,7 @@ let Binary_Search_Tree = (array) => {
     get_level_order,
     get_height,
     get_depth,
-    balanced_tree,
+    rebalanced_tree,
     is_balanced,
     tree_root,
     inserting,
